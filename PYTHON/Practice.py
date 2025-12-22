@@ -4,7 +4,7 @@ my_var_2 = 3.14
 name = "Bob"
 
 # Don't change the line below
-print(f"Variable 2 = {my_var_2}" )
+print(f"Variable 1 = {my_var_1}" )
 print(type(my_var_2))
 print(f"name = {name}")
 
