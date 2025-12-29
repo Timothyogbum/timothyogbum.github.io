@@ -681,7 +681,7 @@
                         </div>
                         <div class="metric">
                             <span class="metric-label">Now Learning</span>
-                            <span class="metric-value">DevOps, AWS & GCP &amp; C</span>
+                            <span class="metric-value">DevOps, AWS & Azure</span>
                         </div>
                     </div>
                 </div>
@@ -857,6 +857,33 @@
                 </article>
 
                 <article class="project-card" data-animate>
+                    <div class="project-tag">Linux · User Mgmt · Security · 2024</div>
+                    <div class="project-title">100 Days of DevOps: Day 2</div>
+                    <div style="margin-top: 4px; font-weight: 500; color: #e5e7eb;">Temporary Access & Account Expiry
+                    </div>
+                    <ul class="muted"
+                        style="list-style: disc; padding-left: 20px; margin-top: 8px; display: flex; flex-direction: column; gap: 6px;">
+                        <li><strong>Objective:</strong> Create a temporary user <code>john</code> on
+                            <code>App Server 3</code> with a hard expiration date.</li>
+                        <li><strong>Implementation:</strong> Connected to <code>stapp03</code> via SSH. Used
+                            <code>useradd -e</code> to set expiration.</li>
+                        <li><strong>Command:</strong> <code>sudo useradd -e 2024-03-28 john</code></li>
+                        <li><strong>Verification:</strong> Used <code>chage</code> tool to verify the account expiry
+                            date.</li>
+                    </ul>
+                    <div class="project-links">
+                        <a href="https://github.com/Timothyogbum/100-Days-of-DevOps/tree/main/Day-02-User-Lifecycle"
+                            target="_blank" rel="noopener noreferrer">
+                            Day 2 Readme
+                        </a>
+                        <a href="https://github.com/Timothyogbum/100-Days-of-DevOps" target="_blank"
+                            rel="noopener noreferrer">
+                            Full Repo
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card" data-animate>
                     <div class="project-tag">AWS · Python · Docker · PostgreSQL · 2024</div>
                     <div class="project-title">Cloud Asset Management System</div>
                     <ul class="muted"
@@ -870,11 +897,7 @@
                             misconfigurations and surface security/compliance issues to a dashboard.</li>
 
                     </ul>
-                    <div class="project-links">
-                        <a href="#" target="_blank" rel="noopener noreferrer">
-                            Architecture notes (PDF)
-                        </a>
-                    </div>
+
                 </article>
 
                 <article class="project-card" data-animate>
