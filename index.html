@@ -612,6 +612,7 @@
                 <a href="#experience">Experience</a>
                 <a href="#skills">Skills</a>
                 <a href="#projects">Projects</a>
+                <a href="#resume">Resume</a>
                 <a href="#contact">Contact</a>
             </nav>
         </header>
@@ -864,9 +865,11 @@
                     <ul class="muted"
                         style="list-style: disc; padding-left: 20px; margin-top: 8px; display: flex; flex-direction: column; gap: 6px;">
                         <li><strong>Objective:</strong> Create a temporary user <code>john</code> on
-                            <code>App Server 3</code> with a hard expiration date.</li>
+                            <code>App Server 3</code> with a hard expiration date.
+                        </li>
                         <li><strong>Implementation:</strong> Connected to <code>stapp03</code> via SSH. Used
-                            <code>useradd -e</code> to set expiration.</li>
+                            <code>useradd -e</code> to set expiration.
+                        </li>
                         <li><strong>Command:</strong> <code>sudo useradd -e 2024-03-28 john</code></li>
                         <li><strong>Verification:</strong> Used <code>chage</code> tool to verify the account expiry
                             date.</li>
@@ -932,6 +935,42 @@
                     </ul>
 
                 </article>
+            </div>
+            </div>
+        </section>
+
+        <!-- RESUME -->
+        <section id="resume">
+            <div class="section-label">Document</div>
+            <h2 class="section-heading">Resume</h2>
+
+            <div class="card" data-animate>
+                <div style="display: flex; flex-direction: column; gap: 24px; align-items: center;">
+                    <p class="muted" style="text-align: center; max-width: 600px;">
+                        View my resume below or download it to keep a copy.
+                    </p>
+
+                    <!-- PDF Preview -->
+                    <div
+                        style="width: 100%; height: 600px; background: rgba(30, 27, 75, 0.5); border-radius: 16px; overflow: hidden; border: 1px solid rgba(63, 63, 70, 0.6);">
+                        <iframe src="resume.pdf" width="100%" height="100%" style="border: none;">
+                            <p style="padding: 20px; text-align: center; color: var(--text-muted);">
+                                Your browser does not support PDF embedding.
+                                <a href="resume.pdf" target="_blank" style="color: var(--accent);">
+                                    Click here to view the PDF.
+                                </a>
+                            </p>
+                        </iframe>
+                    </div>
+
+                    <!-- Download Action -->
+                    <div>
+                        <a href="resume.pdf" download="Timothy_Ogbum_Resume.pdf" class="btn btn-primary"
+                            id="download-resume-btn">
+                            Download PDF
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -1027,6 +1066,17 @@
         }, { threshold: 0.5 });
 
         document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el));
+
+
+        // Resume Download Message
+        const downloadBtn = document.getElementById('download-resume-btn');
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', () => {
+                setTimeout(() => {
+                    alert("Thank you for downloading my resume! 🚀\n\nI've crafted it with care and I'm excited about the possibility of connecting. Looking forward to speaking with you!");
+                }, 800);
+            });
+        }
 
 
     </script>
