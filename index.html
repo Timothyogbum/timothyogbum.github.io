@@ -126,11 +126,33 @@
             margin-bottom: 72px;
         }
 
+        .hero-profile-container {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .profile-img {
+            width: 110px;
+            height: 110px;
+            border-radius: 20px;
+            object-fit: cover;
+            border: 2px solid rgba(0, 209, 255, 0.4);
+            box-shadow: 0 8px 24px rgba(0, 209, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05) rotate(-2deg);
+        }
+
         .hero-title {
             font-size: clamp(2.6rem, 3.4vw, 3.4rem);
             line-height: 1.05;
             letter-spacing: -0.03em;
-            margin-bottom: 16px;
+            margin-bottom: 8px;
             font-weight: 800;
         }
 
@@ -146,6 +168,7 @@
             color: var(--text-muted);
             max-width: 32rem;
             margin-bottom: 20px;
+            line-height: 1.6;
         }
 
         .pill-row {
@@ -405,6 +428,22 @@
             gap: 24px;
         }
 
+        /* Project Images CSS */
+        .project-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            border: 1px solid var(--card-border);
+            opacity: 0.85;
+            transition: opacity 0.3s ease;
+        }
+        
+        .project-card:hover .project-image {
+            opacity: 1;
+        }
+
         .project-tag {
             font-size: 0.7rem;
             text-transform: uppercase;
@@ -536,7 +575,7 @@
         /* Responsive */
         @media (max-width: 860px) {
             header { flex-direction: column; align-items: flex-start; }
-            nav.top-nav { width: 100%; justify-content: flex-start; flex-wrap: wrap; display: none; /* Hidden on mobile in favor of floating dock */ }
+            nav.top-nav { width: 100%; justify-content: flex-start; flex-wrap: wrap; display: none; }
             .hero { grid-template-columns: minmax(0, 1fr); }
             .hero-side { order: -1; }
             .grid-2 { grid-template-columns: minmax(0, 1fr); }
@@ -547,6 +586,7 @@
         @media (max-width: 480px) {
             main { padding-inline: 14px; }
             .hero-card { inset: 10%; }
+            .hero-profile-container { flex-direction: column; align-items: flex-start; gap: 16px; }
         }
 
         .link-highlight {
@@ -583,10 +623,16 @@
         <!-- HERO -->
         <section class="hero" id="top">
             <div data-animate>
-                <h1 class="hero-title">
-                    Building <span class="gradient">multi-cloud systems</span><br />
-                    boosted by AI.
-                </h1>
+                <div class="hero-profile-container">
+                    <img src="profile.jpg" alt="Timothy Ogbum" class="profile-img">
+                    <div>
+                        <h1 class="hero-title">
+                            Hi, I'm <span class="gradient">Timothy.</span>
+                        </h1>
+                        <p style="font-size: 1.2rem; color: var(--accent); font-weight: 600;">Cloud & AI Engineering Student</p>
+                    </div>
+                </div>
+
                 <p class="hero-subtitle">
                     I’m a Computer Science student in Canada focused on cloud engineering, security,
                     and using AI as a force multiplier. I design small but real cloud projects,
@@ -638,7 +684,7 @@
                         <div class="metric">
                             <span class="metric-label">Cloud Projects</span>
                             <div>
-                                <span class="metric-value" data-count="4">0</span><span class="metric-value">+</span>
+                                <span class="metric-value" data-count="9">0</span><span class="metric-value">+</span>
                             </div>
                         </div>
                         <div class="metric">
@@ -726,7 +772,6 @@
                         Gained hands-on experience securing cloud environments by monitoring and managing cloud assets,
                         assisting with vulnerability assessments, and supporting implementation of security best
                         practices.
-                        Helped improve cloud resources and contributed to strengthening overall cloud security posture.
                     </p>
                     <ul class="inline-list">
                         <li>Cloud Security</li>
@@ -775,49 +820,74 @@
             <h2 class="section-heading">Cloud &amp; AI projects</h2>
 
             <div class="projects-grid">
+
+                <!-- HomeShare Management System -->
                 <article class="project-card" data-animate>
-                    <div class="project-tag">Linux · DevOps · Security</div>
-                    <div class="project-title">100 Days of DevOps: Day 1</div>
-                    <div style="margin-top: 4px; font-weight: 500; color: #e5e7eb;">Secure User Creation (xFusionCorp Task)</div>
+                    <img src="1106103_45f9a7a84a1b3349113de4a1ea858cb8.jpg" alt="HomeShare Management System" class="project-image">
+                    <div class="project-tag">App · Management System</div>
+                    <div class="project-title">HomeShare Management System</div>
                     <ul class="muted" style="list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 8px;">
-                        <li><span style="color:var(--accent);">▹</span> <strong>Objective:</strong> Created a service user named <code>javed</code> for a backup agent tool.</li>
-                        <li><span style="color:var(--accent);">▹</span> <strong>Implementation:</strong> Accessed <code>stapp01</code> via SSH.</li>
-                        <li><span style="color:var(--accent);">▹</span> <strong>Command:</strong> <code style="background:rgba(255,255,255,0.1); padding:2px 6px; border-radius:4px;">sudo useradd -s /sbin/nologin javed</code></li>
-                        <li><span style="color:var(--accent);">▹</span> <strong>Security:</strong> Prevented interactive shell access (PoLP).</li>
+                        <li><span style="color:var(--accent);">▹</span> Built a comprehensive platform designed for managing shared living spaces, automating chore delegations, and handling shared expenses effectively.</li>
                     </ul>
                     <div class="project-links">
-                        <a href="https://github.com/Timothyogbum/100-Days-of-DevOps/tree/main/Day-01-Linux-User-Management" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Readme</a>
-                        <a href="https://github.com/Timothyogbum/100-Days-of-DevOps" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-code"></i> Full Repo</a>
+                        <a href="https://github.com/Timothyogbum/homeshare-management-system" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-code"></i> Full Repo</a>
                     </div>
                 </article>
 
+                <!-- Summit Stream Media Platform -->
                 <article class="project-card" data-animate>
-                    <div class="project-tag">Linux · User Mgmt · Security</div>
-                    <div class="project-title">100 Days of DevOps: Day 2</div>
-                    <div style="margin-top: 4px; font-weight: 500; color: #e5e7eb;">Temporary Access & Account Expiry</div>
+                    <img src="551446c5-2aba-4310-b897-2931be796e4b.jpg" alt="Summit Stream" class="project-image">
+                    <div class="project-tag">C++ · OOP · Factory Pattern</div>
+                    <div class="project-title">Summit Stream Media Platform</div>
                     <ul class="muted" style="list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 8px;">
-                        <li><span style="color:var(--accent);">▹</span> <strong>Objective:</strong> Create a temporary user with a hard expiration.</li>
-                        <li><span style="color:var(--accent);">▹</span> <strong>Implementation:</strong> Used <code>useradd -e</code> on <code>stapp03</code>.</li>
-                        <li><span style="color:var(--accent);">▹</span> <strong>Command:</strong> <code style="background:rgba(255,255,255,0.1); padding:2px 6px; border-radius:4px;">sudo useradd -e 2024-03-28 john</code></li>
-                        <li><span style="color:var(--accent);">▹</span> <strong>Verification:</strong> Used <code>chage</code> tool to verify expiry.</li>
+                        <li><span style="color:var(--accent);">▹</span> Developed a highly-optimized, polymorphic media management engine supporting dynamic search filtering and memory-safe resource allocation.</li>
                     </ul>
                     <div class="project-links">
-                        <a href="https://github.com/Timothyogbum/100-Days-of-DevOps/tree/main/Day-02-User-Lifecycle" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Readme</a>
-                        <a href="https://github.com/Timothyogbum/100-Days-of-DevOps" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-code"></i> Full Repo</a>
+                        <a href="https://github.com/Timothyogbum/Summit-Stream-Media-Platform" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-code"></i> Full Repo</a>
                     </div>
                 </article>
-
-                <article class="project-card" data-animate style="grid-column: span 1; @media (min-width: 861px) { grid-column: span 2; }">
+                
+                <!-- Cloud Asset Management -->
+                <article class="project-card" data-animate>
+                    <img src="cHJpdmF0ZS9zdGF0aWMvaW1hZ2Uvd2Vic2l0ZS8yMDIyLTA0L2xyL3B4NzE4NTktaW1hZ2Uta3d2djc0czIuanBn.webp" alt="Cloud Asset System" class="project-image">
                     <div class="project-tag">AWS · Python · Docker · PostgreSQL</div>
                     <div class="project-title">Cloud Asset Management System</div>
                     <ul class="muted" style="list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 8px;">
                         <li><span style="color:var(--accent);">▹</span> Designed a simulated enterprise cloud asset management system that tracked ~$100,000 USD/month of virtual assets across multiple AWS accounts.</li>
                         <li><span style="color:var(--accent);">▹</span> Implemented scheduled Python jobs running in Docker containers to pull asset data via AWS SDK and store in PostgreSQL.</li>
-                        <li><span style="color:var(--accent);">▹</span> Built cost & risk views (e.g., “unattached volumes”, “public S3 buckets”) to highlight misconfigurations to a dashboard.</li>
+                        <li><span style="color:var(--accent);">▹</span> Built cost & risk views to highlight misconfigurations to a dashboard.</li>
                     </ul>
                 </article>
 
+                <!-- 100 Days AWS -->
                 <article class="project-card" data-animate>
+                    <img src="aws-logo-logo-png-transparent.png" alt="100 Days AWS" class="project-image" style="object-fit: contain; padding: 20px; background: #0b1121;">
+                    <div class="project-tag">AWS · Cloud Infrastructure</div>
+                    <div class="project-title">100 Days of Cloud: AWS</div>
+                    <ul class="muted" style="list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 8px;">
+                        <li><span style="color:var(--accent);">▹</span> 100 days of hands-on technical labs focusing on EC2, S3, IAM, CloudFormation, and building scalable Serverless architectures.</li>
+                    </ul>
+                    <div class="project-links">
+                        <a href="https://github.com/Timothyogbum/100-days-of-cloud-aws" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-code"></i> Full Repo</a>
+                    </div>
+                </article>
+
+                <!-- 100 Days Azure -->
+                <article class="project-card" data-animate>
+                    <img src="Microsoft_Azure.webp" alt="100 Days Azure" class="project-image" style="object-fit: contain; padding: 20px; background: #0b1121;">
+                    <div class="project-tag">Azure · Cloud Native</div>
+                    <div class="project-title">100 Days of Cloud: Azure</div>
+                    <ul class="muted" style="list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 8px;">
+                        <li><span style="color:var(--accent);">▹</span> A continuous sprint through Microsoft Azure, mastering Virtual Machines, Azure AD, App Services, and comprehensive cloud networking.</li>
+                    </ul>
+                    <div class="project-links">
+                        <a href="https://github.com/Timothyogbum/100-days-of-cloud-azure" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-code"></i> Full Repo</a>
+                    </div>
+                </article>
+
+                <!-- Secure Vault -->
+                <article class="project-card" data-animate>
+                    <img src="28124222664_d527557046_b.jpg" alt="Secure File Vault" class="project-image">
                     <div class="project-tag">AWS S3 · IAM · KMS · Python</div>
                     <div class="project-title">Secure File Vault on AWS</div>
                     <ul class="muted" style="list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 8px;">
@@ -827,7 +897,9 @@
                     </ul>
                 </article>
 
+                <!-- AI Toolkit -->
                 <article class="project-card" data-animate>
+                    <img src="Automate-Security-Gates-Icon.webp" alt="AI Toolkit" class="project-image" style="object-fit: contain; padding: 20px; background: #0b1121;">
                     <div class="project-tag">Python · GitHub Actions · OpenAI API</div>
                     <div class="project-title">AI-Enhanced Cloud Toolkit</div>
                     <ul class="muted" style="list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 8px;">
@@ -835,6 +907,18 @@
                         <li><span style="color:var(--accent);">▹</span> Automated README generation from commit history.</li>
                         <li><span style="color:var(--accent);">▹</span> Integrated AI assistant to suggest infra improvements (cost/tags).</li>
                     </ul>
+                </article>
+
+                <!-- 100 Days DevOps -->
+                <article class="project-card" data-animate>
+                    <div class="project-tag">Linux · DevOps · Security</div>
+                    <div class="project-title">100 Days of DevOps</div>
+                    <ul class="muted" style="list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 8px;">
+                        <li><span style="color:var(--accent);">▹</span> Documenting my daily journey mastering Linux user management, enforcing strict security policies, and building robust automation scripts.</li>
+                    </ul>
+                    <div class="project-links">
+                        <a href="https://github.com/Timothyogbum/100-Days-of-DevOps" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-code"></i> Full Repo</a>
+                    </div>
                 </article>
             </div>
         </section>
@@ -877,7 +961,7 @@
 
             <div class="card contact" data-animate>
                 <p>
-                    I’m currently looking for a <strong style="color:var(--text-main);">Summer Cloud / DevOps Engineering co-op</strong>.
+                    I’m currently looking for a <strong style="color:var(--text-main);">2026 Summer Co-ops/Internships</strong>.
                     If you work with AWS, containers, security-minded infrastructure and are open
                     to a driven student contributor, I’d love to connect.
                 </p>
@@ -899,7 +983,7 @@
                 </p>
             </div>
 
-            <footer>Timothy Ogbum &copy; 2024</footer>
+            <footer>Timothy Ogbum &copy; 2026</footer>
         </section>
 
     </main>

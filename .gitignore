@@ -1,0 +1,8 @@
+# Ignore compiled object files
+*.o
+
+# Ignore the executable
+a1
+
+# Ignore OS generated files
+.DS_Store
