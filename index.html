@@ -1,199 +1,980 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
-    <title>Timothy Ogbum – Cloud & AI Engineer</title>
+    <title>Timothy Ogbum – Cloud & AI Engineering Student</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Portfolio of Timothy Ogbum, Cloud & Security Student." />
+    <meta name="description" content="Software & AI-focused portfolio of Timothy Ogbum, Computer Science student." />
+    <!-- Added FontAwesome for the new floating dock icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         :root {
-            --bg-dark: #040814;
-            --card-glass: rgba(17, 25, 40, 0.6);
-            --card-border: rgba(255, 255, 255, 0.08);
+            /* Updated to match the deeper cyber-dark theme of the mockups */
+            --bg: #040814;
+            --bg-soft: #0b1121;
+            --accent: #00D1FF; /* Neon Cyan */
+            --accent-purple: #B100FF; /* Neon Purple */
+            --accent-soft: rgba(0, 209, 255, 0.15);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --accent-blue: #00D1FF;
-            --accent-purple: #B100FF;
+            
+            /* Glassmorphism Variables */
+            --card-bg: rgba(17, 25, 40, 0.6);
+            --card-border: rgba(255, 255, 255, 0.08);
             --nav-bg: rgba(15, 23, 42, 0.8);
+            
+            --radius-xl: 24px;
+            --shadow-soft: 0 24px 60px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 8px 32px 0 rgba(0, 209, 255, 0.1);
+            --transition-fast: 200ms ease-out;
+            --transition-med: 600ms cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', system-ui, sans-serif; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
-            background-color: var(--bg-dark);
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui,
+                "Roboto", "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg);
+            /* Adds the subtle glowing background clouds from the mockup */
             background-image: 
-                radial-gradient(circle at 15% 50%, rgba(0, 209, 255, 0.08), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(177, 0, 255, 0.08), transparent 25%);
+                radial-gradient(circle at 15% 0%, rgba(0, 209, 255, 0.08), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(177, 0, 255, 0.08), transparent 25%),
+                radial-gradient(circle at 50% 80%, rgba(0, 209, 255, 0.05), transparent 40%);
             color: var(--text-main);
-            line-height: 1.6;
-            padding-bottom: 120px; /* Space for bottom nav */
+            min-height: 100vh;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 100px; /* Space for the new floating dock */
         }
 
-        /* ----- TYPOGRAPHY & HERO ----- */
-        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-        
-        .hero { margin-bottom: 40px; }
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 10px;
-            letter-spacing: -1px;
+        main {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 32px 16px 80px;
         }
-        .hero h1 span {
-            background: linear-gradient(90deg, var(--accent-blue), #38bdf8);
-            -webkit-background-clip: text; color: transparent;
-        }
-        .hero p { color: var(--text-muted); font-size: 1.1rem; }
 
-        /* ----- BENTO GRID SYSTEM ----- */
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 24px;
+        /* Keep top header but make it match the new glass vibe */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
             margin-bottom: 40px;
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(18px);
+            background: linear-gradient(to bottom, rgba(4, 8, 20, 0.9), rgba(4, 8, 20, 0.4), transparent);
+            z-index: 20;
+            padding: 16px 8px;
         }
 
-        .glass-card {
-            background: var(--card-glass);
-            backdrop-filter: blur(16px);
+        header .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-orb {
+            width: 26px;
+            height: 26px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 30% 20%, #e0f2fe, var(--accent) 40%, var(--accent-purple) 100%);
+            box-shadow: 0 0 20px rgba(0, 209, 255, 0.6);
+            animation: floatOrb 6s ease-in-out infinite;
+        }
+
+        .logo-text {
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            font-size: 0.92rem;
+            color: #e5e7eb;
+        }
+
+        nav.top-nav {
+            display: flex;
+            gap: 16px;
+            font-size: 0.9rem;
+        }
+
+        nav.top-nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 6px 10px;
+            border-radius: 999px;
+            transition: all var(--transition-fast);
+        }
+
+        nav.top-nav a:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            transform: translateY(-1px);
+        }
+
+        /* Hero */
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.8fr);
+            gap: 32px;
+            align-items: center;
+            margin-bottom: 72px;
+        }
+
+        .hero-title {
+            font-size: clamp(2.6rem, 3.4vw, 3.4rem);
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 16px;
+            font-weight: 800;
+        }
+
+        .hero-title span.gradient {
+            background: linear-gradient(120deg, var(--accent), var(--accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            color: var(--text-muted);
+            max-width: 32rem;
+            margin-bottom: 20px;
+        }
+
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border-radius: 999px;
+            padding: 6px 12px;
+            font-size: 0.75rem;
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--card-border);
+            backdrop-filter: blur(10px);
+        }
+
+        .pill-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: var(--accent);
+            box-shadow: 0 0 8px var(--accent);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn {
+            border-radius: 999px;
+            padding: 10px 18px;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all var(--transition-fast);
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), #0ea5e9);
+            color: #040814;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(0, 209, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 209, 255, 0.5);
+        }
+
+        .btn-ghost {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-ghost:hover {
+            background: rgba(0, 209, 255, 0.1);
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .hero-side {
+            position: relative;
+            min-height: 260px;
+            border-radius: 40px;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            overflow: hidden;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 999px;
+            filter: blur(40px); /* Increased blur for mockup glow effect */
+            opacity: 0.6;
+            mix-blend-mode: screen;
+            animation: floatSoft 16s ease-in-out infinite alternate;
+        }
+
+        .orb.small {
+            width: 100px; height: 100px;
+            background: var(--accent);
+        }
+
+        .orb.medium {
+            width: 150px; height: 150px;
+            background: var(--accent-purple);
+        }
+
+        .orb.large {
+            width: 200px; height: 200px;
+            background: #0ea5e9;
+        }
+
+        .orb.one { top: -20px; right: -10px; animation-delay: -2s; }
+        .orb.two { bottom: -40px; left: -20px; animation-delay: -5s; }
+        .orb.three { top: 30%; left: 50%; transform: translateX(-50%); animation-delay: -8s; }
+
+        .hero-card {
+            position: absolute;
+            inset: 15%;
             border-radius: 24px;
-            padding: 30px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: rgba(4, 8, 20, 0.7);
+            border: 1px solid var(--card-border);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            backdrop-filter: blur(18px);
+            z-index: 2;
+        }
+
+        .hero-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 0.8rem;
+            color: #e5e7eb;
+        }
+
+        .hero-card-chip {
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            font-size: 0.72rem;
+            color: var(--accent);
+        }
+
+        .hero-card-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .hero-card-body {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .hero-metrics {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            font-size: 0.75rem;
+        }
+
+        .metric {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .metric-label {
+            color: var(--text-muted);
+        }
+
+        .metric-value {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 64px;
+        }
+
+        .section-label {
+            font-size: 0.8rem;
+            color: var(--accent);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .section-heading {
+            font-size: 1.6rem;
+            margin-bottom: 24px;
+            letter-spacing: -0.01em;
+            font-weight: 700;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.6fr);
+            gap: 24px;
+        }
+
+        /* Glassmorphism Cards */
+        .card, .project-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--card-border);
+            padding: 24px;
+            box-shadow: var(--shadow-soft);
             position: relative;
             overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
-        .glass-card:hover {
+
+        .card:hover, .project-card:hover {
             transform: translateY(-5px);
             border-color: rgba(0, 209, 255, 0.3);
             box-shadow: 0 10px 40px rgba(0, 209, 255, 0.1);
         }
 
-        /* Grid Spans */
-        .span-8 { grid-column: span 8; }
-        .span-4 { grid-column: span 4; }
-        .span-6 { grid-column: span 6; }
-        .span-12 { grid-column: span 12; }
-
-        @media (max-width: 900px) {
-            .span-8, .span-4, .span-6 { grid-column: span 12; }
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text-main);
         }
 
-        /* ----- CARD INTERNALS ----- */
-        .card-label {
-            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;
-            color: var(--accent-blue); margin-bottom: 12px; font-weight: 600;
+        .muted {
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
-        .glass-card h2 { font-size: 1.8rem; margin-bottom: 15px; }
-        .glass-card h3 { font-size: 1.4rem; margin-bottom: 10px; }
-        
-        .pill-container { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
-        .pill {
+
+        ul.inline-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        ul.inline-list li {
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            color: #e5e7eb;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .project-tag {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--accent);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .project-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .project-links {
+            margin-top: 15px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .project-links a {
+            font-size: 0.85rem;
+            color: var(--text-main);
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 6px 14px; border-radius: 20px; font-size: 0.85rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            border: 1px solid var(--card-border);
+            transition: all 0.2s;
         }
-        .pill i { color: var(--accent-blue); margin-right: 5px; }
 
-        .btn {
-            display: inline-block; padding: 10px 24px; border-radius: 30px;
-            text-decoration: none; font-weight: 600; font-size: 0.9rem;
-            transition: all 0.3s ease; margin-top: 15px;
+        .project-links a:hover {
+            background: rgba(0, 209, 255, 0.1);
+            border-color: var(--accent);
+            color: var(--accent);
         }
-        .btn-primary {
-            background: linear-gradient(90deg, var(--accent-blue), #0ea5e9);
-            color: #000; box-shadow: 0 0 20px rgba(0, 209, 255, 0.4);
-        }
-        .btn-primary:hover { box-shadow: 0 0 30px rgba(0, 209, 255, 0.6); transform: scale(1.05); }
 
-        /* ----- EXPERIENCE TIMELINE ----- */
-        .timeline { border-left: 2px solid var(--card-border); margin-left: 10px; padding-left: 20px; }
-        .timeline-item { margin-bottom: 25px; position: relative; }
-        .timeline-item::before {
-            content: ''; position: absolute; left: -27px; top: 5px;
-            width: 12px; height: 12px; border-radius: 50%;
-            background: var(--accent-blue); box-shadow: 0 0 10px var(--accent-blue);
+        .contact {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            font-size: 0.95rem;
         }
-        .timeline-date { font-size: 0.85rem; color: var(--accent-blue); margin-bottom: 5px; }
 
-        /* ----- CONTACT FORM ----- */
-        .form-group { margin-bottom: 15px; }
-        .form-control {
-            width: 100%; padding: 12px; border-radius: 12px;
-            background: rgba(0,0,0,0.2); border: 1px solid var(--card-border);
-            color: #fff; font-family: inherit;
+        .contact a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
         }
-        .form-control:focus { outline: none; border-color: var(--accent-blue); }
-        .quick-connect { display: flex; flex-direction: column; gap: 15px; }
-        .connect-btn {
-            display: flex; align-items: center; gap: 15px; padding: 15px;
-            background: rgba(255,255,255,0.03); border: 1px solid var(--card-border);
-            border-radius: 16px; text-decoration: none; color: #fff; transition: 0.3s;
+
+        .contact a:hover {
+            text-decoration: underline;
         }
-        .connect-btn:hover { background: rgba(0, 209, 255, 0.1); border-color: var(--accent-blue); }
-        .connect-btn i { font-size: 1.5rem; color: var(--accent-blue); }
+
+        footer {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            opacity: 0.75;
+            margin-top: 40px;
+            text-align: center;
+        }
 
         /* ----- FLOATING DOCK NAV ----- */
         .floating-nav {
-            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
-            background: var(--nav-bg); backdrop-filter: blur(20px);
-            border: 1px solid var(--card-border); border-radius: 40px;
-            display: flex; gap: 5px; padding: 8px 15px; z-index: 1000;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--nav-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            border-radius: 40px;
+            display: flex;
+            gap: 5px;
+            padding: 8px 15px;
+            z-index: 1000;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
         }
         .nav-item {
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            color: var(--text-muted); text-decoration: none; padding: 10px 20px;
-            border-radius: 30px; transition: 0.3s; font-size: 0.65rem; gap: 5px; text-transform: uppercase; letter-spacing: 1px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 30px;
+            transition: 0.3s;
+            font-size: 0.65rem;
+            gap: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
         }
         .nav-item i { font-size: 1.2rem; }
-        .nav-item:hover, .nav-item.active { color: var(--text-main); background: rgba(255,255,255,0.1); }
+        .nav-item:hover, .nav-item.active { 
+            color: var(--text-main); 
+            background: rgba(255,255,255,0.1); 
+        }
+
+        /* Motion / antigravity */
+        @keyframes floatSoft {
+            0% { transform: translate3d(0, 0, 0) scale(1); }
+            50% { transform: translate3d(-18px, 12px, 0) scale(1.05); }
+            100% { transform: translate3d(12px, -18px, 0) scale(1.02); }
+        }
+
+        @keyframes floatOrb {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0); }
+        }
+
+        [data-animate] {
+            opacity: 0;
+            transform: translateY(24px) scale(0.98);
+            transition:
+                opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1),
+                transform 1000ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        [data-animate].visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Responsive */
+        @media (max-width: 860px) {
+            header { flex-direction: column; align-items: flex-start; }
+            nav.top-nav { width: 100%; justify-content: flex-start; flex-wrap: wrap; display: none; /* Hidden on mobile in favor of floating dock */ }
+            .hero { grid-template-columns: minmax(0, 1fr); }
+            .hero-side { order: -1; }
+            .grid-2 { grid-template-columns: minmax(0, 1fr); }
+            .floating-nav { width: 90%; max-width: 400px; justify-content: space-between; }
+            .nav-item { padding: 8px 10px; font-size: 0.6rem; }
+        }
+
+        @media (max-width: 480px) {
+            main { padding-inline: 14px; }
+            .hero-card { inset: 10%; }
+        }
+
+        .link-highlight {
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent);
+            transition: border-width 0.2s ease, color 0.2s ease;
+        }
+
+        .link-highlight:hover {
+            border-bottom-width: 2px;
+            color: var(--accent);
+        }
     </style>
 </head>
-<body>
 
-    <div class="container">
-        <header class="hero" id="home">
-            <h1>DESIGNING THE FUTURE<br>OF <span>CLOUD & AI.</span></h1>
-            <p>Computer Science Student | Cloud & Security Focus | AI-Powered Solutions</p>
+<body>
+    <main>
+        <header>
+            <div class="logo">
+                <div class="logo-orb"></div>
+                <div class="logo-text">TIMOTHY OGBUM</div>
+            </div>
+            <nav class="top-nav">
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#resume">Resume</a>
+                <a href="#contact">Contact</a>
+            </nav>
         </header>
 
-        <section class="bento-grid" id="projects">
-            <div class="glass-card span-8">
-                <div class="card-label">Project</div>
-                <h2>CLOUD ASSET MGMT</h2>
-                <p class="text-muted">AI-Powered Cloud Asset Management System tracking virtual assets across multiple AWS accounts using Python and Docker.</p>
-                <div class="pill-container">
-                    <span class="pill"><i class="fa-brands fa-aws"></i> AWS</span>
-                    <span class="pill"><i class="fa-brands fa-docker"></i> Docker</span>
-                    <span class="pill"><i class="fa-brands fa-python"></i> Python</span>
-                    <span class="pill"><i class="fa-solid fa-database"></i> PostgreSQL</span>
+        <!-- HERO -->
+        <section class="hero" id="top">
+            <div data-animate>
+                <h1 class="hero-title">
+                    Building <span class="gradient">multi-cloud systems</span><br />
+                    boosted by AI.
+                </h1>
+                <p class="hero-subtitle">
+                    I’m a Computer Science student in Canada focused on cloud engineering, security,
+                    and using AI as a force multiplier. I design small but real cloud projects,
+                    automate workflows, and treat my GitHub as a growing lab.
+                </p>
+
+                <div class="pill-row">
+                    <div class="pill">
+                        <span class="pill-dot"></span>
+                        Multi-Cloud Strategy (AWS, Azure, GCP)
+                    </div>
+                    <div class="pill">
+                        🔐 Secure by design mindset
+                    </div>
+                    <div class="pill">
+                        🤖 AI-assisted developer
+                    </div>
                 </div>
-                <a href="https://github.com/timothyogbum" class="btn btn-primary">View Case Study</a>
-            </div>
 
-            <div class="glass-card span-4" id="about">
-                <div class="card-label">Skills & Strategy</div>
-                <div class="pill-container">
-                    <span class="pill"><i class="fa-brands fa-aws"></i> AWS</span>
-                    <span class="pill"><i class="fa-brands fa-google"></i> GCP</span>
-                    <span class="pill"><i class="fa-brands fa-microsoft"></i> Azure</span>
-                    <span class="pill"><i class="fa-solid fa-shield-halved"></i> Cloud Security</span>
-                    <span class="pill"><i class="fa-brands fa-linux"></i> Linux</span>
-                    <span class="pill"><i class="fa-solid fa-robot"></i> AI Workflows</span>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="https://github.com/timothyogbum" target="_blank"
+                        rel="noopener noreferrer">
+                        View GitHub
+                    </a>
+                    <a class="btn btn-ghost" href="#projects">
+                        See Cloud Projects →
+                    </a>
                 </div>
             </div>
 
-            <div class="glass-card span-4">
-                <div class="card-label">Project</div>
-                <h3>AI TOOLKIT</h3>
-                <p class="text-muted">AI-Enhanced Productivity Toolkit automating log summaries and GitHub Actions.</p>
-                <a href="https://github.com/timothyogbum" class="btn btn-primary" style="background: transparent; border: 1px solid var(--accent-blue); color: #fff; box-shadow: none;">Explore Now</a>
+            <div class="hero-side" aria-hidden="true" data-animate>
+                <div class="orb small one"></div>
+                <div class="orb medium two"></div>
+                <div class="orb large three"></div>
+
+                <div class="hero-card">
+                    <div>
+                        <div class="hero-card-header">
+                            <span>Cloud Lab · v1.0</span>
+                            <span class="hero-card-chip">AI-accelerated</span>
+                        </div>
+                        <div class="hero-card-title">Daily Workflow Snapshot</div>
+                        <div class="hero-card-body">
+                            Design, deploy, and document small cloud systems on AWS. Use AI to review
+                            architecture, generate docs, and suggest tests—without skipping the fundamentals.
+                        </div>
+                    </div>
+                    <div class="hero-metrics">
+                        <div class="metric">
+                            <span class="metric-label">Cloud Projects</span>
+                            <div>
+                                <span class="metric-value" data-count="4">0</span><span class="metric-value">+</span>
+                            </div>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Tech Focus</span>
+                            <span class="metric-value" style="color: #e5e7eb;">AWS · Azure · GCP</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Now Learning</span>
+                            <span class="metric-value" style="color: #e5e7eb;">DevOps, AWS & Azure</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT / SKILLS -->
+        <section id="about">
+            <div class="section-label">Profile</div>
+            <h2 class="section-heading">About &amp; skillset</h2>
+
+            <div class="grid-2">
+                <div class="card" data-animate>
+                    <h3>Who I am</h3>
+                    <p class="muted">
+                        My journey began in <strong style="color:var(--text-main);">Nigeria</strong>, took me to college in <strong style="color:var(--text-main);">Hamilton</strong>,
+                        and eventually led me to <strong style="color:var(--text-main);">Ottawa</strong> to pursue my true passion: Technology.
+                        I’m now a Computer Science student at Carleton University (Graduating 2027) building a
+                        robust multi-cloud skillset.
+                    </p>
+                    <p class="muted" style="margin-top:12px; clear: both;">
+                        <strong style="color:var(--accent);">My Why:</strong> I am driven by a deep curiosity. My goal isn't just to succeed, but to
+                        <em>keep being curious</em> by asking the right questions that lead to better, more innovative
+                        answers.
+                    </p>
+                </div>
+
+                <div class="card" id="skills" data-animate>
+                    <h3>Skills &amp; Strategy</h3>
+                    <p class="muted">Building a T-shaped skillset with depth in Cloud Security and breadth across the
+                        big three providers.</p>
+                    <ul class="inline-list">
+                        <li><i class="fa-brands fa-aws" style="color:var(--accent); margin-right:5px;"></i> AWS · Azure · GCP</li>
+                        <li><i class="fa-solid fa-shield-halved" style="color:var(--accent); margin-right:5px;"></i> Cloud Security</li>
+                        <li><i class="fa-brands fa-linux" style="color:var(--accent); margin-right:5px;"></i> Linux · Ubuntu</li>
+                        <li><i class="fa-brands fa-docker" style="color:var(--accent); margin-right:5px;"></i> Docker · Containers</li>
+                        <li><i class="fa-brands fa-python" style="color:var(--accent); margin-right:5px;"></i> Python · Automation</li>
+                        <li><i class="fa-solid fa-robot" style="color:var(--accent); margin-right:5px;"></i> AI-Assisted Workflows</li>
+                    </ul>
+                </div>
+
+                <div class="card" data-animate style="grid-column: span 1; @media (min-width: 861px) { grid-column: span 2; }">
+                    <h3>Current Status</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 12px;">
+                        <div style="flex: 1; min-width: 200px;">
+                            <div style="font-size: 0.8rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; font-weight:600;">Location</div>
+                            <div style="font-weight: 600; color: #e5e7eb;">Based in Ottawa, Canada</div>
+                            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Open to Remote &amp; Hybrid roles across Canada.</div>
+                        </div>
+                        <div style="flex: 1; min-width: 200px;">
+                            <div style="font-size: 0.8rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; font-weight:600;">Authorization</div>
+                            <div style="font-weight: 600; color: #e5e7eb;">Valid Study &amp; Work Permit</div>
+                            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Fully authorized to work in Canada.</div>
+                        </div>
+                        <div style="flex: 1; min-width: 200px;">
+                            <div style="font-size: 0.8rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; font-weight:600;">Work Style</div>
+                            <div style="font-weight: 600; color: #e5e7eb;">Remote-Ready Setup</div>
+                            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">"Remote-ready, but always down to socialize and collaborate."</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section id="experience">
+            <div class="section-label">Career</div>
+            <h2 class="section-heading">Experience</h2>
+
+            <div class="projects-grid">
+                <article class="project-card" data-animate>
+                    <div class="project-tag">Jun 2024 - Sep 2024 · Internship</div>
+                    <div class="project-title">Cloud Security Intern @ <a href="https://www.strandfold.com"
+                            target="_blank" rel="noopener noreferrer" class="link-highlight">Strandfold Ltd</a></div>
+                    <p class="muted">
+                        Gained hands-on experience securing cloud environments by monitoring and managing cloud assets,
+                        assisting with vulnerability assessments, and supporting implementation of security best
+                        practices.
+                        Helped improve cloud resources and contributed to strengthening overall cloud security posture.
+                    </p>
+                    <ul class="inline-list">
+                        <li>Cloud Security</li>
+                        <li>AI</li>
+                        <li>Problem Solving</li>
+                    </ul>
+                </article>
+
+                <article class="project-card" data-animate>
+                    <div class="project-tag">Volunteering & Impact</div>
+                    <div class="project-title">Resource Contributor @ <a href="https://strandfoldsupport.org"
+                            target="_blank" rel="noopener noreferrer" class="link-highlight">Strandfold Support Foundation</a></div>
+                    <p class="muted">
+                        Partnered with the foundation to identify, curate, and distribute essential resources.
+                        Focused on creating seamless access for community members in need, ensuring support was
+                        delivered effectively and with dignity.
+                    </p>
+                    <ul class="inline-list">
+                        <li>Community Impact</li>
+                        <li>Resource Management</li>
+                    </ul>
+                </article>
+
+                <article class="project-card" data-animate>
+                    <div class="project-tag">Jan 2024 - Jun 2024 · Internship</div>
+                    <div class="project-title">Summer Intern @ The Activator Coaching Academy</div>
+                    <p class="muted">
+                        Hybrid role focusing on problem solving, communication, personal development, and personal
+                        training.
+                    </p>
+                </article>
+
+                <article class="project-card" data-animate>
+                    <div class="project-tag">Oct 2022 - July 2023</div>
+                    <div class="project-title">Baker / Cashier @ Mr Puffs Lansdowne Ottawa</div>
+                    <p class="muted">
+                        Provided excellent customer service and managed bakery operations in a fast-paced environment.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="projects">
+            <div class="section-label">Work</div>
+            <h2 class="section-heading">Cloud &amp; AI projects</h2>
+
+            <div class="projects-grid">
+                <article class="project-card" data-animate>
+                    <div class="project-tag">Linux · DevOps · Security</div>
+                    <div class="project-title">100 Days of DevOps: Day 1</div>
+                    <div style="margin-top: 4px; font-weight: 500; color: #e5e7eb;">Secure User Creation (xFusionCorp Task)</div>
+                    <ul class="muted" style="list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 8px;">
+                        <li><span style="color:var(--accent);">▹</span> <strong>Objective:</strong> Created a service user named <code>javed</code> for a backup agent tool.</li>
+                        <li><span style="color:var(--accent);">▹</span> <strong>Implementation:</strong> Accessed <code>stapp01</code> via SSH.</li>
+                        <li><span style="color:var(--accent);">▹</span> <strong>Command:</strong> <code style="background:rgba(255,255,255,0.1); padding:2px 6px; border-radius:4px;">sudo useradd -s /sbin/nologin javed</code></li>
+                        <li><span style="color:var(--accent);">▹</span> <strong>Security:</strong> Prevented interactive shell access (PoLP).</li>
+                    </ul>
+                    <div class="project-links">
+                        <a href="https://github.com/Timothyogbum/100-Days-of-DevOps/tree/main/Day-01-Linux-User-Management" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Readme</a>
+                        <a href="https://github.com/Timothyogbum/100-Days-of-DevOps" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-code"></i> Full Repo</a>
+                    </div>
+                </article>
+
+                <article class="project-card" data-animate>
+                    <div class="project-tag">Linux · User Mgmt · Security</div>
+                    <div class="project-title">100 Days of DevOps: Day 2</div>
+                    <div style="margin-top: 4px; font-weight: 500; color: #e5e7eb;">Temporary Access & Account Expiry</div>
+                    <ul class="muted" style="list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 8px;">
+                        <li><span style="color:var(--accent);">▹</span> <strong>Objective:</strong> Create a temporary user with a hard expiration.</li>
+                        <li><span style="color:var(--accent);">▹</span> <strong>Implementation:</strong> Used <code>useradd -e</code> on <code>stapp03</code>.</li>
+                        <li><span style="color:var(--accent);">▹</span> <strong>Command:</strong> <code style="background:rgba(255,255,255,0.1); padding:2px 6px; border-radius:4px;">sudo useradd -e 2024-03-28 john</code></li>
+                        <li><span style="color:var(--accent);">▹</span> <strong>Verification:</strong> Used <code>chage</code> tool to verify expiry.</li>
+                    </ul>
+                    <div class="project-links">
+                        <a href="https://github.com/Timothyogbum/100-Days-of-DevOps/tree/main/Day-02-User-Lifecycle" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Readme</a>
+                        <a href="https://github.com/Timothyogbum/100-Days-of-DevOps" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-code"></i> Full Repo</a>
+                    </div>
+                </article>
+
+                <article class="project-card" data-animate style="grid-column: span 1; @media (min-width: 861px) { grid-column: span 2; }">
+                    <div class="project-tag">AWS · Python · Docker · PostgreSQL</div>
+                    <div class="project-title">Cloud Asset Management System</div>
+                    <ul class="muted" style="list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 8px;">
+                        <li><span style="color:var(--accent);">▹</span> Designed a simulated enterprise cloud asset management system that tracked ~$100,000 USD/month of virtual assets across multiple AWS accounts.</li>
+                        <li><span style="color:var(--accent);">▹</span> Implemented scheduled Python jobs running in Docker containers to pull asset data via AWS SDK and store in PostgreSQL.</li>
+                        <li><span style="color:var(--accent);">▹</span> Built cost & risk views (e.g., “unattached volumes”, “public S3 buckets”) to highlight misconfigurations to a dashboard.</li>
+                    </ul>
+                </article>
+
+                <article class="project-card" data-animate>
+                    <div class="project-tag">AWS S3 · IAM · KMS · Python</div>
+                    <div class="project-title">Secure File Vault on AWS</div>
+                    <ul class="muted" style="list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 8px;">
+                        <li><span style="color:var(--accent);">▹</span> Built a secure file storage prototype using private S3 buckets, IAM roles, and KMS encryption-at-rest.</li>
+                        <li><span style="color:var(--accent);">▹</span> Enforced least-privilege policies and logged activity using CloudTrail.</li>
+                        <li><span style="color:var(--accent);">▹</span> Wrote a Python CLI script avoiding hardcoded secrets.</li>
+                    </ul>
+                </article>
+
+                <article class="project-card" data-animate>
+                    <div class="project-tag">Python · GitHub Actions · OpenAI API</div>
+                    <div class="project-title">AI-Enhanced Cloud Toolkit</div>
+                    <ul class="muted" style="list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 8px;">
+                        <li><span style="color:var(--accent);">▹</span> Created scripts and GitHub Actions workflows that use AI to auto-generate docs and summarize logs.</li>
+                        <li><span style="color:var(--accent);">▹</span> Automated README generation from commit history.</li>
+                        <li><span style="color:var(--accent);">▹</span> Integrated AI assistant to suggest infra improvements (cost/tags).</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <!-- RESUME -->
+        <section id="resume">
+            <div class="section-label">Document</div>
+            <h2 class="section-heading">Resume</h2>
+
+            <div class="card" data-animate>
+                <div style="display: flex; flex-direction: column; gap: 24px; align-items: center;">
+                    <p class="muted" style="text-align: center; max-width: 600px;">
+                        View my resume below or download it to keep a copy.
+                    </p>
+
+                    <!-- PDF Preview styled to match glassmorphism -->
+                    <div style="width: 100%; height: 600px; background: rgba(0, 0, 0, 0.4); border-radius: 16px; overflow: hidden; border: 1px solid var(--card-border);">
+                        <iframe src="resume.pdf" width="100%" height="100%" style="border: none;">
+                            <p style="padding: 20px; text-align: center; color: var(--text-muted);">
+                                Your browser does not support PDF embedding.
+                                <a href="resume.pdf" target="_blank" style="color: var(--accent);">Click here to view the PDF.</a>
+                            </p>
+                        </iframe>
+                    </div>
+
+                    <!-- Download Action -->
+                    <div>
+                        <a href="resume.pdf" download="Timothy_Ogbum_Resume.pdf" class="btn btn-primary" id="download-resume-btn">
+                            <i class="fa-solid fa-download" style="margin-right: 8px;"></i> Download PDF
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact">
+            <div class="section-label">Contact</div>
+            <h2 class="section-heading">Let’s talk co-op or projects</h2>
+
+            <div class="card contact" data-animate>
+                <p>
+                    I’m currently looking for a <strong style="color:var(--text-main);">Summer Cloud / DevOps Engineering co-op</strong>.
+                    If you work with AWS, containers, security-minded infrastructure and are open
+                    to a driven student contributor, I’d love to connect.
+                </p>
+                <p style="margin-top: 15px;">
+                    <i class="fa-solid fa-envelope" style="color:var(--accent); width:20px;"></i>
+                    <a href="mailto:timothyogbum@cmail.carleton.ca">timothyogbum@cmail.carleton.ca</a>
+                </p>
+                <p>
+                    <i class="fa-brands fa-linkedin" style="color:var(--accent); width:20px;"></i>
+                    <a href="https://www.linkedin.com/in/timothy-ogbum-2b6513291" target="_blank" rel="noopener noreferrer">linkedin.com/in/timothy-ogbum</a>
+                </p>
+                <p>
+                    <i class="fa-brands fa-github" style="color:var(--accent); width:20px;"></i>
+                    <a href="https://github.com/timothyogbum" target="_blank" rel="noopener noreferrer">github.com/timothyogbum</a>
+                </p>
+                <p>
+                    <i class="fa-solid fa-phone" style="color:var(--accent); width:20px;"></i>
+                    <a href="tel:+13432542608">343-254-2608</a>
+                </p>
             </div>
 
-            <div class="glass-card span-8" id="experience" style="background: linear-gradient(135deg, rgba(177,0,255,0.1), rgba(0,209,255,0.1));">
-                <div class="card-label">Experience & Impact</div>
+            <footer>Timothy Ogbum &copy; 2024</footer>
+        </section>
+
+    </main>
+
+    <!-- FLOATING DOCK -->
+    <nav class="floating-nav">
+        <a href="#top" class="nav-item active"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="#about" class="nav-item"><i class="fa-solid fa-user"></i> About</a>
+        <a href="#projects" class="nav-item"><i class="fa-solid fa-folder"></i> Projects</a>
+        <a href="#resume" class="nav-item"><i class="fa-solid fa-file-pdf"></i> Resume</a>
+        <a href="#contact" class="nav-item"><i class="fa-solid fa-envelope"></i> Contact</a>
+    </nav>
+
+    <script>
+        // Original scroll-in animation using IntersectionObserver
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.15 }
+        );
+
+        document.querySelectorAll('[data-animate]').forEach((el) => observer.observe(el));
+
+        // Original Number counting animation
+        const countObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.getAttribute('data-count'));
+                    const duration = 2000; // 2 seconds
+                    const step = target / (duration / 16); // 60fps
+                    let current = 0;
+
+                    const updateCount = () => {
+                        current += step;
+                        if (current < target) {
+                            el.innerText = Math.ceil(current);
+                            requestAnimationFrame(updateCount);
+                        } else {
+                            el.innerText = target;
+                        }
+                    };
+
+                    updateCount();
+                    countObserver.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el));
+
+        // Original Resume Download Message
+        const downloadBtn = document.getElementById('download-resume-btn');
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', () => {
+                setTimeout(() => {
+                    alert("Thank you for downloading my resume! 🚀\n\nI've crafted it with care and I'm excited about the possibility of connecting. Looking forward to speaking with you!");
+                }, 800);
+            });
+        }
+
+        // New script for floating dock active state
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navItems.forEach(nav => nav.classList.remove('active'));
+                item.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
